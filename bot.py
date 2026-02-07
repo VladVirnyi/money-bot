@@ -3,11 +3,16 @@ from telebot import types
 from datetime import date, timedelta
 import matplotlib.pyplot as plt
 import os
+from dotenv import load_dotenv
 
 from database import *
 
-TOKEN = '8249235733:AAFcyDukXENtAUpH8WPNg6aux8ljiM4zlls'
-bot = telebot.TeleBot(TOKEN)
+def get_token():
+    load_dotenv(verbose=True, dotenv_path="money-bot/.env")
+    return os.environ.get('TOKEN')
+
+API_TOKEN = get_token()
+bot = telebot.TeleBot(API_TOKEN)
 
 init_db()
 
